@@ -1,0 +1,14 @@
+.trending .container .trending-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.trending-container img {
+  width: 100%;
+}
+
+.trending .label {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

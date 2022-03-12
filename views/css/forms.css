@@ -1,0 +1,87 @@
+main {
+  height: calc(100vh - 68px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  background-color: white;
+  box-shadow: 0 0 20px rgb(0 0 0 / 0.2);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+form::before,
+form::after {
+  position: absolute;
+  content: "";
+  width: 400px;
+  height: 400px;;
+  background-color: #e54d02;
+  border-radius: 50%;
+  right: 100px;
+  z-index: -1;
+  left: -150px;
+  bottom: -150px;
+}
+
+form::after {
+  left: auto;
+  bottom: auto;
+  right: -150px;
+  top: -150px;
+}
+
+form h2 {
+  font-size: 2.5rem;
+  color: #e54d02;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 0 black;
+}
+
+form .pairs {
+  margin-block: 30px;
+  width: 400px;
+  max-width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+form .pairs label {
+  display: block;
+  align-self: flex-start;
+  margin-bottom: 5px;
+}
+
+form .pairs input {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 100vh;
+}
+
+form button {
+  padding: 10px 50px;
+  outline: none;
+  border-radius: 100vh;
+  background-color: #e54d02;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.form-note {
+  margin-bottom: 30px;
+}
+
+.form-note a {
+  color: #1979d3;
+}
