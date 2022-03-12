@@ -1,0 +1,139 @@
+.trending .container .trending-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.trending-container img {
+  width: 100%;
+}
+
+.trending .label {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+main {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+main .main-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-inline: -15px;
+}
+
+main .main-container > * {
+  margin-inline: 15px;
+}
+
+main .links {
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+main .links a {
+  color: black;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.create-post {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.create-post i {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.create-post input {
+  flex: 1;
+  margin-left: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+  border-radius: 5px;
+}
+
+main .label {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.posts-container .post {
+  background-color: white;
+  border: 1px solid #ccc;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.posts-container .post .votes {
+  padding: 15px;
+  background-color: #f6f7f8;
+}
+
+.posts-container .post .votes div {
+  text-align: center;
+}
+
+.posts-container .post .votes div > * {
+  cursor: pointer;
+}
+
+.posts-container .post .post-body {
+  padding: 20px;
+}
+
+.posts-container .post .post-body .by {
+  color: #7e7e7e;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+.posts-container .post .post-body .by a {
+  color: #7e7e7e;
+  text-decoration: none;
+}
+
+.posts-container .post .post-body h3 {
+  margin-bottom: 10px;
+}
+
+.posts-container .post .post-body .content {
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.posts-container .post .post-body .comments-controllers {
+  display: flex;
+  background-color: #f6f7f8;
+  margin: -20px;
+  margin-top: 0;
+  padding: 10px;
+}
+
+.posts-container .post .post-body .comments-controllers > * {
+  cursor: pointer;
+}
+
+.posts-container .post .post-body .comments-controllers .show-comments {
+  display: flex;
+  margin-right: 20px;
+}
+
+.posts-container .post .post-body .comments-controllers i {
+  margin-top: 7px;
+  margin-left: 10px;
+  color: #666666;
+}

@@ -1,0 +1,117 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.container {
+  padding-inline: 15px;
+  margin-inline: auto;
+}
+
+@media (min-width: 567px) {
+  .container {
+    width: 550px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 950px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1150px;
+  }
+}
+
+body {
+  background-color: #dae0e6;
+}
+
+header {
+  background-color: white;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  width: 110px;
+}
+
+header .search {
+  width: 500px;
+  max-width: 100%;
+  margin-inline: 20px;
+  position: relative;
+}
+
+header .search::after {
+  position: absolute;
+  content: '\f002';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: #838383;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+header .search input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f6f7f8;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 35px;
+}
+
+header .controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header .controls > * {
+  margin-inline: 15px;
+}
+
+.signup {
+  padding: 7px 50px;
+  background: #1979d3;
+  color: white;
+  text-decoration: none;
+  border-radius: 100vh;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.login {
+  padding: 7px 50px;
+  font-weight: bold;
+  background: white;
+  color: #1979d3;
+  text-decoration: none;
+  border-radius: 100vh;
+  border: 1px solid #1979d3;
+  font-size: 0.9rem;
+}
+
+.settings {
+  color: #666;
+  cursor: pointer;
+}
