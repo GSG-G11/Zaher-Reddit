@@ -15,11 +15,13 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.use(express.json());
-app.use(express.static(join(__dirname, '..', 'views')));
-app.use(compression());
-app.use(helmet());
-app.use(cookieParser());
-app.use(router);
+app.use([
+  express.json(),
+  express.static(join(__dirname, '../views')),
+  compression(),
+  cookieParser(),
+  helmet(),
+  router,
+]);
 
 module.exports = app;
