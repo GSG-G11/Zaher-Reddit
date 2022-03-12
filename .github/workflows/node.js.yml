@@ -1,4 +1,4 @@
-name: PostgreSQL service example
+name: Test Suits For Database And Routes
 on: push
 env:
   super_secret: ${{ secrets.SECRET }}
