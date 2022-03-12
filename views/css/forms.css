@@ -77,3 +77,11 @@ form button {
   cursor: pointer;
   font-weight: bold;
 }
+
+.form-note {
+  margin-bottom: 30px;
+}
+
+.form-note a {
+  color: #1979d3;
+}
