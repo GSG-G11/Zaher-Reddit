@@ -1,0 +1,22 @@
+.user-info {
+  background-color: white;
+  width: 700px;
+  margin-top: 67px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  position: relative;
+  height: 250px;
+}
+
+.top {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  background-color: red;
+  top: 0;
+  left: 0;
+}
+
+.username {
+  margin-top: 100px;
+}
