@@ -189,7 +189,6 @@ describe('POST /login', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        console.log(res.body);
         expect(res.body.message).toBe('Invalid Password');
         return done();
       });
