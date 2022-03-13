@@ -86,3 +86,10 @@ form button {
 .form-note a {
   color: #1979d3;
 }
+
+#error {
+  color: red;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 0 rgb(56, 55, 55);
+}
