@@ -1,7 +1,8 @@
 const apiRouter = require('express').Router();
 
-const { signupHandler } = require('../controllers');
+const { signupHandler, loginHandler } = require('../controllers');
 
 apiRouter.post('/signup', signupHandler);
+apiRouter.post('/login', loginHandler);
 
 module.exports = apiRouter;
