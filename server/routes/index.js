@@ -7,6 +7,6 @@ const privateFiles = [/\/html\/*/, /\/css\/*/, /\/js\/*/, /\/images\/*/];
 
 router.use(privateFiles, clientError);
 router.use(pages);
-router.use(api);
+router.use('/api/v1', api);
 
 module.exports = router;
