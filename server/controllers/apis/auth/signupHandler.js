@@ -15,7 +15,7 @@ module.exports = async ({ body }, res, next) => {
     const hashedPassword = await checkTaken(emailExists, password, 'The email you entered is taken', hash);
     const userId = await createNewUser({ username, email, password: hashedPassword });
     const token = await signToken(userId);
-    res.status(201).cookie('access_token', token).json({ message: 'User added successfully' });
+    res.status(201).cookie('access_token', token).json({ message: 'User added successfully', status: 201, id: userId });
   } catch (err) {
     err.details ? next(CustomErr(err.details[0].message, 400)) : next(err);
   }
