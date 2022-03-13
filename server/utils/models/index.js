@@ -1,13 +1,15 @@
 const {
   successSignup,
-  invalidInput,
+  invalidUsername,
+  invalidPassword,
   takenUsername,
   takenEmail,
 } = require('./signupModels');
 
 module.exports = {
   successSignup,
-  invalidInput,
+  invalidUsername,
   takenUsername,
+  invalidPassword,
   takenEmail,
 };

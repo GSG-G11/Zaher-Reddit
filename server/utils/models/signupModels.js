@@ -1,4 +1,4 @@
-const invalidInput = {
+const invalidUsername = {
   username: 'Za..her',
   email: 'zaher@gmail.com',
   password: '123456',
@@ -22,9 +22,16 @@ const takenUsername = {
   password: '123456',
 };
 
+const invalidPassword = {
+  username: 'Zaher',
+  email: 'zaher@gmail.com',
+  password: '12345',
+};
+
 module.exports = {
   successSignup,
-  invalidInput,
+  invalidUsername,
   takenUsername,
   takenEmail,
+  invalidPassword,
 };

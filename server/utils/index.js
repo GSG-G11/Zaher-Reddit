@@ -2,9 +2,10 @@ const { signupSchema, checkTaken } = require('./validation');
 const { signToken } = require('./jwt');
 const {
   successSignup,
-  invalidInput,
+  invalidUsername,
   takenUsername,
   takenEmail,
+  invalidPassword,
 } = require('./models');
 
 module.exports = {
@@ -12,7 +13,8 @@ module.exports = {
   checkTaken,
   signupSchema,
   successSignup,
-  invalidInput,
+  invalidUsername,
   takenUsername,
   takenEmail,
+  invalidPassword,
 };
