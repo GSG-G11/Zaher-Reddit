@@ -1,4 +1,4 @@
-const { signupSchema, checkTaken } = require('./validation');
+const { loginSchema, signupSchema, checkTaken } = require('./validation');
 const { signToken } = require('./jwt');
 const {
   successSignup,
@@ -12,6 +12,7 @@ module.exports = {
   signToken,
   checkTaken,
   signupSchema,
+  loginSchema,
   successSignup,
   invalidUsername,
   takenUsername,

@@ -1,7 +1,9 @@
 const signupSchema = require('./signupSchema');
 const checkTaken = require('./checkTaken');
+const loginSchema = require('./loginSchema');
 
 module.exports = {
-  signupSchema,
   checkTaken,
+  signupSchema,
+  loginSchema,
 };
