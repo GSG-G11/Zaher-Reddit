@@ -6,6 +6,11 @@ const {
   takenUsername,
   takenEmail,
   invalidPassword,
+  unverifiedUsername,
+  successLogin,
+  notExistUsername,
+  unverifiedPassword,
+  incorrectPassword,
 } = require('./models');
 
 module.exports = {
@@ -18,4 +23,9 @@ module.exports = {
   takenUsername,
   takenEmail,
   invalidPassword,
+  unverifiedUsername,
+  successLogin,
+  notExistUsername,
+  unverifiedPassword,
+  incorrectPassword,
 };
