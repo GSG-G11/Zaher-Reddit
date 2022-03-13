@@ -4,7 +4,8 @@ const buildDB = require('../server/database/config/build/build');
 const dbConnection = require('../server/database/config/connections');
 const {
   successSignup,
-  invalidInput,
+  invalidUsername,
+  invalidPassword,
   takenUsername,
   takenEmail,
 } = require('../server/utils');
@@ -72,7 +73,7 @@ describe('POST /signup', () => {
   it('should return 400 Bad Request and Content-Type /json/', (done) => {
     request(app)
       .post('/api/v1/signup')
-      .send(invalidInput)
+      .send(invalidUsername)
       .expect(400)
       .expect('Content-Type', /json/)
       .end((err, res) => {
@@ -104,6 +105,19 @@ describe('POST /signup', () => {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body.message).toBe('The email you entered is taken');
+        return done();
+      });
+  });
+
+  it('should return 400 Bad Request and Content-Type /json/', (done) => {
+    request(app)
+      .post('/api/v1/signup')
+      .send(invalidPassword)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('Password length must be between 6 and 33 characters');
         return done();
       });
   });
