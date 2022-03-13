@@ -1,3 +1,8 @@
-const CustomErr = require('./CustomErr');
+const { signupSchema, checkTaken } = require('./validation');
+const { signToken } = require('./jwt');
 
-module.exports = { CustomErr };
+module.exports = {
+  signupSchema,
+  signToken,
+  checkTaken,
+};
