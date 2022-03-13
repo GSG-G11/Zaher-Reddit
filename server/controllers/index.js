@@ -1,6 +1,6 @@
 const { clientError, serverError } = require('./error');
 const { getLoginPage, getSignupPage } = require('./pages');
-const { signupHandler } = require('./apis');
+const { signupHandler, loginHandler } = require('./apis');
 
 module.exports = {
   clientError,
@@ -8,4 +8,5 @@ module.exports = {
   getLoginPage,
   getSignupPage,
   signupHandler,
+  loginHandler,
 };
