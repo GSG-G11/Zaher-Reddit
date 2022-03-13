@@ -20,7 +20,7 @@ const unverifiedPassword = {
 
 const incorrectPassword = {
   username: 'Zaher',
-  password: '12345',
+  password: 'zaher123456',
 };
 
 module.exports = {
