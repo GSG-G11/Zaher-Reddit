@@ -1,9 +1,9 @@
 BEGIN;
 
 INSERT INTO users (name, email, password) VALUES 
-  ('john', 'john@gmail.com', 'john123'),
-  ('jane', 'jane@gmail.com', 'jane123'),
-  ('joe', 'joe@gmail.com', 'joe123');
+  ('Zaher', 'zaher@gmail.com', '$2a$10$QmQwQQVfeH6vxIzGloNKR.mfLivCmgWVovqZf3L5T/aF52sk8NQxy'),
+  ('Ahmed', 'ahmed@gmail.com', '$2a$10$7R0YVQyoq2lEE4sjkUvKD.VIipWvtoyAa4wbOR0TY/CQ5b97pLAvu'),
+  ('Ola', 'ola@gmail.com', '$2a$10$m4YJ0j0pfhr8IRvtfhjn7.rJ1h0mHj/aD3aaEKlXj43SU40So69u.');
 
 INSERT INTO posts (user_id, title, content, votes) VALUES 
   (1, 'Post 1', 'This is the first post', 0),
