@@ -5,20 +5,20 @@ const invalidUsername = {
 };
 
 const successSignup = {
-  username: 'Zaher',
-  email: 'zaher@gmail.com',
+  username: 'Zain',
+  email: 'zain@gmail.com',
   password: '123456',
 };
 
 const takenEmail = {
-  username: 'Ahmed',
-  email: 'john@gmail.com',
+  username: 'Osama',
+  email: 'zaher@gmail.com',
   password: '123456',
 };
 
 const takenUsername = {
-  username: 'john',
-  email: 'john@gmail.com',
+  username: 'Zaher',
+  email: 'zaher@gmail.com',
   password: '123456',
 };
 
