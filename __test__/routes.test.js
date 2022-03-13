@@ -8,6 +8,11 @@ const {
   invalidPassword,
   takenUsername,
   takenEmail,
+  successLogin,
+  unverifiedUsername,
+  notExistUsername,
+  unverifiedPassword,
+  incorrectPassword,
 } = require('../server/utils');
 
 beforeAll(buildDB);
@@ -118,6 +123,74 @@ describe('POST /signup', () => {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body.message).toBe('Password length must be between 6 and 33 characters');
+        return done();
+      });
+  });
+});
+
+describe('POST /login', () => {
+  it('should return 201 Created and Content-Type /json/', (done) => {
+    request(app)
+      .post('/api/v1/login')
+      .send(successLogin)
+      .expect(201)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('Token added successfully');
+        return done();
+      });
+  });
+
+  it('should return 400 Bad Request and Content-Type /json/', (done) => {
+    request(app)
+      .post('/api/v1/login')
+      .send(unverifiedUsername)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('Username must contain only letters or numbers');
+        return done();
+      });
+  });
+
+  it('should return 400 Bad Request and Content-Type /json/', (done) => {
+    request(app)
+      .post('/api/v1/login')
+      .send(unverifiedPassword)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('Password length must be between 6 and 33 characters');
+        return done();
+      });
+  });
+
+  it('should return 400 Bad Request and Content-Type /json/', (done) => {
+    request(app)
+      .post('/api/v1/login')
+      .send(notExistUsername)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('User named alex does not exist');
+        return done();
+      });
+  });
+
+  it('should return 400 Bad Request and Content-Type /json/', (done) => {
+    request(app)
+      .post('/api/v1/login')
+      .send(incorrectPassword)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        console.log(res.body);
+        expect(res.body.message).toBe('Invalid Password');
         return done();
       });
   });
