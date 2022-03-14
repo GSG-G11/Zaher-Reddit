@@ -13,6 +13,7 @@ const { checkLoggedIn } = require('../middleware');
 apiRouter.get('/posts', getAllPosts);
 apiRouter.post('/signup', signupHandler);
 apiRouter.post('/login', loginHandler);
+apiRouter.get('/user/:id', getUsername);
 apiRouter.use(checkLoggedIn);
 apiRouter.get('/user', getUsername);
 apiRouter.delete('/logout', handleLogout);
