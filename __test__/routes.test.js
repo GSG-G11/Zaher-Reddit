@@ -272,7 +272,7 @@ describe('GET /posts', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body.length).toBe(9);
+        expect(res.body.message).toBe('Successfully retrieved all posts');
         return done();
       });
   });
