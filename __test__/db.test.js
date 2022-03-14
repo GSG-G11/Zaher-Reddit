@@ -7,6 +7,7 @@ const {
   checkEmailExistsQuery,
   checkUsernameQuery,
   getUsernameQuery,
+  getAllPostsQuery,
 } = require('../server/database/queries');
 
 beforeAll(buildDB);
@@ -66,5 +67,12 @@ describe('Test suites for user queries', () => {
     const userId = 1;
     const { rows } = await getUsernameQuery(userId);
     expect(rows[0].name).toBe('Zaher');
+  });
+});
+
+describe('Test suites for get all posts', () => {
+  it('should return all posts in database', async () => {
+    const { rows } = await getAllPostsQuery();
+    expect(rows.length).toBe(9);
   });
 });
