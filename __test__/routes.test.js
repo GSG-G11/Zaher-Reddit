@@ -208,3 +208,17 @@ describe('POST /login', () => {
       });
   });
 });
+
+describe('DELETE /logout', () => {
+  it('should return 205 Reset Content and Content-Type /json/', (done) => {
+    request(app)
+      .delete('/api/v1/logout')
+      .expect(205)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('Logged out successfully');
+        return done();
+      });
+  });
+});
