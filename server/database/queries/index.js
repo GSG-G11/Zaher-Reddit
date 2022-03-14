@@ -12,10 +12,15 @@ const {
   getUsernameQuery,
 } = require('./user');
 
+const {
+  getAllPostsQuery,
+} = require('./posts');
+
 module.exports = {
   checkUsernameExistsQuery,
   checkEmailExistsQuery,
   createNewUser,
   checkUsernameQuery,
   getUsernameQuery,
+  getAllPostsQuery,
 };
