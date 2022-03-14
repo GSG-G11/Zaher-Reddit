@@ -1,7 +1,6 @@
 const loginForm = document.forms[0];
-const errorContainer = document.querySelector('#error');
 
-loginForm.addEventListener('submit', async (e) => {
+loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const data = {
@@ -9,17 +8,8 @@ loginForm.addEventListener('submit', async (e) => {
     password: loginForm.password.value.trim(),
   };
 
+  // guard against empty fields
   if (data.username === '' || data.password === '') return;
 
-  try {
-    const payload = await axios.post('/api/v1/login', data);
-    window.location.href = '/';
-  } catch (err) {
-    const errPayload = err.response.data;
-    if (errPayload.status === 404 || errPayload.status === 500) {
-      handleErrPages(errPayload.status);
-    } else {
-      errorContainer.textContent = errPayload.message;
-    }
-  }
+  handleAuthResponse('/api/v1/login', data);
 });
