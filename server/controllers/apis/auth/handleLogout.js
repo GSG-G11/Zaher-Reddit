@@ -3,7 +3,7 @@ module.exports = (req, res, next) => {
     res
       .status(205)
       .clearCookie('access_token')
-      .json({ message: 'Logged out successfully' });
+      .json({ message: 'Logged out successfully', status: 205 });
   } catch (err) {
     next(err);
   }

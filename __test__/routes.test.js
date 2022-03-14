@@ -248,3 +248,18 @@ describe('DELETE /logout', () => {
       });
   });
 });
+
+describe('GET /user', () => {
+  it('should return 200 OK and Content-Type /json/', (done) => {
+    request(app)
+      .get('/api/v1/user')
+      .set({ Cookie: 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('User found');
+        return done();
+      });
+  });
+});

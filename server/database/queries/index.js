@@ -8,9 +8,14 @@ const {
   checkUsernameQuery,
 } = require('./login');
 
+const {
+  getUsernameQuery,
+} = require('./user');
+
 module.exports = {
   checkUsernameExistsQuery,
   checkEmailExistsQuery,
   createNewUser,
   checkUsernameQuery,
+  getUsernameQuery,
 };

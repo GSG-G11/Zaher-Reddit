@@ -4,8 +4,13 @@ const {
   handleLogout,
 } = require('./auth');
 
+const {
+  getUsername,
+} = require('./user');
+
 module.exports = {
   signupHandler,
   loginHandler,
   handleLogout,
+  getUsername,
 };
