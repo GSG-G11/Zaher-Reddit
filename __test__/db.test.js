@@ -6,6 +6,7 @@ const {
   checkUsernameExistsQuery,
   checkEmailExistsQuery,
   checkUsernameQuery,
+  getUsernameQuery,
 } = require('../server/database/queries');
 
 beforeAll(buildDB);
@@ -57,5 +58,13 @@ describe('Test suites for login queries', () => {
   it('should return an empty array not existed usernames', async () => {
     const { rows } = await checkUsernameQuery('ibrahim');
     expect(rows.length).toBe(0);
+  });
+});
+
+describe('Test suites for user queries', () => {
+  it('should return username data for existed usernames', async () => {
+    const userId = 1;
+    const { rows } = await getUsernameQuery(userId);
+    expect(rows[0].name).toBe('Zaher');
   });
 });
