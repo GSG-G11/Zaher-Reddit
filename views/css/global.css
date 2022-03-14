@@ -128,6 +128,10 @@ main .main-container {
   margin-inline: -15px;
 }
 
+main .main-container .posts {
+  width: 80%;
+}
+
 main .main-container > * {
   margin-inline: 15px;
 }
@@ -196,12 +200,22 @@ main .label {
 
 .posts-container .post .post-body {
   padding: 20px;
+  flex: 1;
 }
 
 .posts-container .post .post-body .by {
   color: #7e7e7e;
   font-size: 0.8rem;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.posts-container .post .post-body .by #delete {
+  cursor: pointer;
+  user-select: none;
+  text-decoration: underline;
 }
 
 .posts-container .post .post-body .by a {
