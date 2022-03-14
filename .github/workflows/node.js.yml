@@ -1,7 +1,7 @@
 name: Test Suits For Database And Routes
 on: push
 env:
-  super_secret: ${{ secrets.SECRET }}
+  SECRET: ${{ secrets.SECRET }}
 
 jobs:
   container-job:
