@@ -213,11 +213,37 @@ describe('DELETE /logout', () => {
   it('should return 205 Reset Content and Content-Type /json/', (done) => {
     request(app)
       .delete('/api/v1/logout')
+      .set({ Cookie: 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
       .expect(205)
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body.message).toBe('Logged out successfully');
+        return done();
+      });
+  });
+
+  it('should return 401 Unauthorized and Content-Type /json/ when no cookies passed', (done) => {
+    request(app)
+      .delete('/api/v1/logout')
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('Unauthorized');
+        return done();
+      });
+  });
+
+  it('should return 401 Unauthorized and Content-Type /json/ when passed invalid access token', (done) => {
+    request(app)
+      .delete('/api/v1/logout')
+      .set({ Cookie: 'access_token=yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('invalid token');
         return done();
       });
   });
