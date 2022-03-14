@@ -4,6 +4,7 @@ const {
   signupHandler,
   loginHandler,
   handleLogout,
+  getUsername,
 } = require('./apis');
 
 module.exports = {
@@ -14,4 +15,5 @@ module.exports = {
   signupHandler,
   loginHandler,
   handleLogout,
+  getUsername,
 };
