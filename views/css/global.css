@@ -240,3 +240,15 @@ main .label {
   margin-left: 10px;
   color: #666666;
 }
+
+.logout {
+  padding: 7px 50px;
+  font-weight: bold;
+  background: white;
+  color: #e54d02;
+  text-decoration: none;
+  border-radius: 100vh;
+  border: 1px solid #e54d02;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
