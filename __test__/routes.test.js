@@ -19,6 +19,20 @@ beforeAll(buildDB);
 afterEach(buildDB);
 afterAll(() => dbConnection.end());
 
+describe('GET /not-found', () => {
+  it('should return 404 Not Found, and Content-Type /json/', (done) => {
+    request(app)
+      .get('/not-found')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.ok).toBe(false);
+        return done();
+      });
+  });
+});
+
 describe('GET /', () => {
   it('should return 200 OK and Content-Type /html/', (done) => {
     request(app)
