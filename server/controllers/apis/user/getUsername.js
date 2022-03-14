@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
     const userExists = rows.length;
     if (!userExists) throw CustomErr('Your account has been deleted', 400);
     const username = rows[0].name;
-    res.json({ name: username });
+    res.json({ message: 'User found', status: 200, name: username });
   } catch (err) {
     next(err);
   }
