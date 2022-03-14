@@ -8,9 +8,14 @@ const {
   getUsername,
 } = require('./user');
 
+const {
+  getAllPosts,
+} = require('./posts');
+
 module.exports = {
   signupHandler,
   loginHandler,
   handleLogout,
   getUsername,
+  getAllPosts,
 };

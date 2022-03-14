@@ -5,10 +5,12 @@ const {
   loginHandler,
   handleLogout,
   getUsername,
+  getAllPosts,
 } = require('../controllers');
 
 const { checkLoggedIn } = require('../middleware');
 
+apiRouter.get('/posts', getAllPosts);
 apiRouter.post('/signup', signupHandler);
 apiRouter.post('/login', loginHandler);
 apiRouter.use(checkLoggedIn);

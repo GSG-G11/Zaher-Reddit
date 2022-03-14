@@ -5,6 +5,7 @@ const {
   loginHandler,
   handleLogout,
   getUsername,
+  getAllPosts,
 } = require('./apis');
 
 module.exports = {
@@ -16,4 +17,5 @@ module.exports = {
   loginHandler,
   handleLogout,
   getUsername,
+  getAllPosts,
 };
