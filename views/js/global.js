@@ -66,7 +66,7 @@ const renderPost = async (post, parent, userId, authenticated) => {
     const payload = await axios.get(`/api/v1/user/${post.user_id}`);
     const username = payload.data.name;
     const usernameLink = document.createElement('a');
-    usernameLink.href = `/users/${username}`;
+    usernameLink.href = `/users/${post.user_id}`;
     usernameLink.textContent = username;
     byTxt.append(usernameLink);
     if (authenticated) {
@@ -107,4 +107,43 @@ const renderPost = async (post, parent, userId, authenticated) => {
   postBody.append(by, title, content, commentsControllers);
   postContainer.append(votes, postBody);
   parent.append(postContainer);
+};
+
+const authenticatedUserPage = async (
+  username,
+  headerContainer,
+  postsContainer,
+  userId,
+  homepage,
+) => {
+  document.querySelector('.controls').remove();
+  const welcome = document.createElement('p');
+  welcome.className = 'welcome';
+  welcome.textContent = `Welcome ${username}`;
+  const logout = document.createElement('button');
+  logout.className = 'logout';
+  logout.textContent = 'logout';
+  headerContainer.append(welcome, logout);
+
+  if (homepage) {
+    try {
+      const postsPayload = await axios.get('/api/v1/posts');
+      const { posts } = postsPayload.data;
+      posts.sort((a, b) => b.votes - a.votes)
+        .forEach((post) => renderPost(post, postsContainer, userId, true));
+    } catch (e) {
+      handleErrPages(e.response);
+    }
+  }
+};
+
+const logoutHandler = async () => {
+  try {
+    const payload = await axios.delete('/api/v1/logout');
+    if (payload.status === 205) {
+      window.location.reload();
+    }
+  } catch (err) {
+    handleErrPages(err.response.status);
+  }
 };
