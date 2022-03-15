@@ -20,6 +20,6 @@ module.exports = async ({ body }, res, next) => {
       .cookie('access_token', token, { maxAge: '2592000000' })
       .json({ message: 'Token added successfully', status: 201 });
   } catch (err) {
-    err.details ? next(CustomErr(err.message, 400)) : next(err);
+    err.details ? next(CustomErr(err.details[0].message, 400)) : next(err);
   }
 };
