@@ -1,7 +1,12 @@
 .trending .container .trending-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  display: flex;
+  overflow: auto;
+}
+
+.trending .container .trending-container > * {
+  margin-inline: 10px;
+  flex-shrink: 0;
+  width: 260px;
 }
 
 .trending-container img {
@@ -11,4 +16,40 @@
 .trending .label {
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+body.model-appear {
+  overflow: hidden;
+}
+
+.create-post-model {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(0 0 0 / 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+textarea {
+  resize: none;
+  height: 200px;
+  outline: none;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+form .pairs {
+  max-width: 600px;
+  width: 100%;
+}
+
+main {
+  display: block;
+  margin-top: 50px;
 }

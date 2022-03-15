@@ -12,7 +12,7 @@ const {
   addPostQuery,
 } = require('../server/database/queries');
 
-const { post } = require('../server/utils');
+const { validPost } = require('../server/utils');
 
 beforeAll(buildDB);
 afterEach(buildDB);
@@ -112,8 +112,8 @@ describe('Test suites for get user posts', () => {
 });
 
 describe('Test suites for add post', () => {
-  it('should return add a post to the database', async () => {
-    const { rows } = await addPostQuery({ ...post, id: 1, votes: 0 });
+  it('should add a post to the database', async () => {
+    const { rows } = await addPostQuery({ ...validPost, id: 1, votes: 0 });
     expect(rows[0]).toEqual({
       id: 10,
       user_id: null,

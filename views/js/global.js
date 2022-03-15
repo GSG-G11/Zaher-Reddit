@@ -106,7 +106,7 @@ const renderPost = async (post, parent, userId, authenticated) => {
 
   postBody.append(by, title, content, commentsControllers);
   postContainer.append(votes, postBody);
-  parent.append(postContainer);
+  parent.prepend(postContainer);
 };
 
 const authenticatedUserPage = async (
@@ -129,7 +129,7 @@ const authenticatedUserPage = async (
     try {
       const postsPayload = await axios.get('/api/v1/posts');
       const { posts } = postsPayload.data;
-      posts.sort((a, b) => b.votes - a.votes)
+      posts.sort((a, b) => a.votes - b.votes)
         .forEach((post) => renderPost(post, postsContainer, userId, true));
     } catch (e) {
       handleErrPages(e.response);

@@ -13,7 +13,10 @@ const {
   notExistUsername,
   unverifiedPassword,
   incorrectPassword,
-  post,
+  validPost,
+  emptyTitle,
+  tooShortTitle,
+  tooLongContent,
 } = require('../server/utils');
 
 beforeAll(buildDB);
@@ -329,7 +332,7 @@ describe('POST /post', () => {
     request(app)
       .post('/api/v1/post')
       .set({ Cookie: 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
-      .send(post)
+      .send(validPost)
       .expect(201)
       .expect('Content-Type', /json/)
       .end((err, res) => {
@@ -347,11 +350,59 @@ describe('POST /post', () => {
       });
   });
 
+  it('should return 400 Bad Request and Content-Type /json/', (done) => {
+    expect.assertions(2);
+    request(app)
+      .post('/api/v1/post')
+      .set({ Cookie: 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
+      .send(emptyTitle)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.status).toBe(400);
+        expect(res.body.message).toBe('"title" is not allowed to be empty');
+        return done(err);
+      });
+  });
+
+  it('should return 400 Bad Request and Content-Type /json/', (done) => {
+    expect.assertions(2);
+    request(app)
+      .post('/api/v1/post')
+      .set({ Cookie: 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
+      .send(tooShortTitle)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.status).toBe(400);
+        expect(res.body.message).toBe('Title should contains at least 3 character');
+        return done(err);
+      });
+  });
+
+  it('should return 400 Bad Request and Content-Type /json/', (done) => {
+    expect.assertions(2);
+    request(app)
+      .post('/api/v1/post')
+      .set({ Cookie: 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
+      .send(tooLongContent)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.status).toBe(400);
+        expect(res.body.message).toBe('Content can contain maximum 250 characters');
+        return done(err);
+      });
+  });
+
   it('should return 401 Unauthorized and Content-Type /json/', (done) => {
     expect.assertions(2);
     request(app)
       .post('/api/v1/post')
-      .send(post)
+      .send(validPost)
       .expect(401)
       .expect('Content-Type', /json/)
       .end((err, res) => {

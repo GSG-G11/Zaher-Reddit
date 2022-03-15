@@ -14,7 +14,12 @@ const {
   incorrectPassword,
 } = require('./loginModels');
 
-const { post } = require('./addPostModels');
+const {
+  validPost,
+  emptyTitle,
+  tooShortTitle,
+  tooLongContent,
+} = require('./addPostModels');
 
 module.exports = {
   successSignup,
@@ -27,5 +32,8 @@ module.exports = {
   notExistUsername,
   unverifiedPassword,
   incorrectPassword,
-  post,
+  validPost,
+  emptyTitle,
+  tooShortTitle,
+  tooLongContent,
 };
