@@ -10,6 +10,7 @@ const {
 
 const {
   getAllPosts,
+  getUserPosts,
 } = require('./posts');
 
 module.exports = {
@@ -18,4 +19,5 @@ module.exports = {
   handleLogout,
   getUsername,
   getAllPosts,
+  getUserPosts,
 };

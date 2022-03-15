@@ -14,6 +14,7 @@ const {
 
 const {
   getAllPostsQuery,
+  getUserPosts,
 } = require('./posts');
 
 module.exports = {
@@ -23,4 +24,5 @@ module.exports = {
   checkUsernameQuery,
   getUsernameQuery,
   getAllPostsQuery,
+  getUserPosts,
 };

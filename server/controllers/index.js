@@ -1,11 +1,12 @@
 const { clientError, serverError } = require('./error');
-const { getLoginPage, getSignupPage } = require('./pages');
+const { getLoginPage, getSignupPage, getProfilePage } = require('./pages');
 const {
   signupHandler,
   loginHandler,
   handleLogout,
   getUsername,
   getAllPosts,
+  getUserPosts,
 } = require('./apis');
 
 module.exports = {
@@ -18,4 +19,6 @@ module.exports = {
   handleLogout,
   getUsername,
   getAllPosts,
+  getProfilePage,
+  getUserPosts,
 };
