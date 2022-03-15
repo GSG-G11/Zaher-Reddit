@@ -11,6 +11,7 @@ const {
   notExistUsername,
   unverifiedPassword,
   incorrectPassword,
+  post,
 } = require('./models');
 
 module.exports = {
@@ -29,4 +30,5 @@ module.exports = {
   notExistUsername,
   unverifiedPassword,
   incorrectPassword,
+  post,
 };
