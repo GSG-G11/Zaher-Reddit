@@ -7,6 +7,7 @@ const {
   getUsername,
   getAllPosts,
   getUserPosts,
+  addPost,
 } = require('./apis');
 
 module.exports = {
@@ -21,4 +22,5 @@ module.exports = {
   getAllPosts,
   getProfilePage,
   getUserPosts,
+  addPost,
 };

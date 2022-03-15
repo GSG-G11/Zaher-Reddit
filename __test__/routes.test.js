@@ -13,6 +13,7 @@ const {
   notExistUsername,
   unverifiedPassword,
   incorrectPassword,
+  post,
 } = require('../server/utils');
 
 beforeAll(buildDB);
@@ -318,6 +319,46 @@ describe('GET /user/:id', () => {
         expect(res.body.message).toBe('User found');
         expect(res.body.name).toBe('Zaher');
         return done();
+      });
+  });
+});
+
+describe('POST /post', () => {
+  it('should return 201 Created and Content-Type /json/', (done) => {
+    expect.assertions(3);
+    request(app)
+      .post('/api/v1/post')
+      .set({ Cookie: 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
+      .send(post)
+      .expect(201)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.status).toBe(201);
+        expect(res.body.message).toBe('Post Added');
+        expect(res.body.post).toEqual({
+          id: 10,
+          user_id: 1,
+          title: 'Great Work',
+          content: 'I love your website',
+          votes: 0,
+        });
+        return done(err);
+      });
+  });
+
+  it('should return 401 Unauthorized and Content-Type /json/', (done) => {
+    expect.assertions(2);
+    request(app)
+      .post('/api/v1/post')
+      .send(post)
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.status).toBe(401);
+        expect(res.body.message).toBe('Unauthorized');
+        return done(err);
       });
   });
 });

@@ -9,7 +9,10 @@ const {
   getUsernameQuery,
   getAllPostsQuery,
   getUserPosts,
+  addPostQuery,
 } = require('../server/database/queries');
+
+const { post } = require('../server/utils');
 
 beforeAll(buildDB);
 afterEach(buildDB);
@@ -105,5 +108,18 @@ describe('Test suites for get user posts', () => {
         votes: 0,
       },
     ]);
+  });
+});
+
+describe('Test suites for add post', () => {
+  it('should return add a post to the database', async () => {
+    const { rows } = await addPostQuery({ ...post, id: 1, votes: 0 });
+    expect(rows[0]).toEqual({
+      id: 10,
+      user_id: null,
+      title: 'Great Work',
+      content: 'I love your website',
+      votes: 0,
+    });
   });
 });
