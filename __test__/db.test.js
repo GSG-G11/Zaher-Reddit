@@ -8,6 +8,7 @@ const {
   checkUsernameQuery,
   getUsernameQuery,
   getAllPostsQuery,
+  getUserPosts,
 } = require('../server/database/queries');
 
 beforeAll(buildDB);
@@ -74,5 +75,35 @@ describe('Test suites for get all posts', () => {
   it('should return all posts in database', async () => {
     const { rows } = await getAllPostsQuery();
     expect(rows.length).toBe(9);
+  });
+});
+
+describe('Test suites for get user posts', () => {
+  it('should return all posts for specific user', async () => {
+    const userId = 1;
+    const { rows } = await getUserPosts(userId);
+    expect(rows).toEqual([
+      {
+        id: 1,
+        user_id: 1,
+        title: 'Post 1',
+        content: 'This is the first post',
+        votes: 0,
+      },
+      {
+        id: 2,
+        user_id: 1,
+        title: 'Post 2',
+        content: 'This is the second post',
+        votes: 0,
+      },
+      {
+        id: 3,
+        user_id: 1,
+        title: 'Post 3',
+        content: 'This is the third post',
+        votes: 0,
+      },
+    ]);
   });
 });
