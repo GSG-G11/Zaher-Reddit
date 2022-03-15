@@ -1,5 +1,12 @@
-const { loginSchema, signupSchema, checkTaken } = require('./validation');
 const { signToken, verifyToken } = require('./jwt');
+
+const {
+  loginSchema,
+  signupSchema,
+  checkTaken,
+  addPostSchema,
+} = require('./validation');
+
 const {
   successSignup,
   invalidUsername,
@@ -31,4 +38,5 @@ module.exports = {
   unverifiedPassword,
   incorrectPassword,
   post,
+  addPostSchema,
 };
