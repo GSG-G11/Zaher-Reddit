@@ -277,3 +277,47 @@ describe('GET /posts', () => {
       });
   });
 });
+
+describe('GET /users/:id', () => {
+  it('should return 200 OK and Content-Type /html/', (done) => {
+    request(app)
+      .get('/users/1')
+      .expect(200)
+      .expect('Content-Type', /html/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.ok).toBe(true);
+        return done();
+      });
+  });
+});
+
+describe('GET /user-posts/:id', () => {
+  it('should return 200 OK and Content-Type /json/', (done) => {
+    request(app)
+      .get('/api/v1/user-posts/1')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('Success');
+        return done();
+      });
+  });
+});
+
+describe('GET /user/:id', () => {
+  it('should return 200 OK and Content-Type /json/', (done) => {
+    expect.assertions(2);
+    request(app)
+      .get('/api/v1/user/1')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('User found');
+        expect(res.body.name).toBe('Zaher');
+        return done();
+      });
+  });
+});
