@@ -8,11 +8,13 @@ const {
   getAllPosts,
   getUserPosts,
   addPost,
+  getPostVotes,
 } = require('../controllers');
 
 const { checkLoggedIn } = require('../middleware');
 
 apiRouter.get('/posts', getAllPosts);
+apiRouter.get('/votes/:id', getPostVotes);
 apiRouter.post('/signup', signupHandler);
 apiRouter.post('/login', loginHandler);
 apiRouter.get('/user/:id', getUsername);

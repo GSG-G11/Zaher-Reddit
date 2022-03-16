@@ -16,6 +16,7 @@ const {
   getAllPostsQuery,
   getUserPosts,
   addPostQuery,
+  getPostVotesQuery,
 } = require('./posts');
 
 module.exports = {
@@ -27,4 +28,5 @@ module.exports = {
   getAllPostsQuery,
   getUserPosts,
   addPostQuery,
+  getPostVotesQuery,
 };
