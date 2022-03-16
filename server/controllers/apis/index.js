@@ -9,6 +9,11 @@ const {
 } = require('./user');
 
 const {
+  getPostComments,
+  addComment,
+} = require('./comments');
+
+const {
   getAllPosts,
   getUserPosts,
   addPost,
@@ -26,4 +31,6 @@ module.exports = {
   addPost,
   getPostVotes,
   vote,
+  getPostComments,
+  addComment,
 };
