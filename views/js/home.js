@@ -89,7 +89,6 @@ document.addEventListener('click', async (e) => {
     } catch (err) {
       console.log(err.response);
     }
-    console.log('hello up');
   } else if (e.target.matches('.down-vote')) {
     const postId = e.target.parentElement.parentElement.parentElement.dataset.id;
     const upVote = document.querySelector(`[data-id="${postId}"] .up-vote`);
