@@ -47,7 +47,13 @@ const renderPost = async (post, parent, userId, authenticated) => {
   upVote.className = 'fa-solid fa-chevron-up up-vote';
   const votesNum = document.createElement('div');
   votesNum.className = 'votes-num';
-  votesNum.textContent = post.votes;
+  try {
+    const postVotesPayload = await axios(`/api/v1/votes/${post.id}`);
+    const votesNumber = postVotesPayload.data.info.votes;
+    votesNum.textContent = votesNumber;
+  } catch (err) {
+    handleErrPages(err.response.status);
+  }
   const downVote = document.createElement('i');
   downVote.className = 'fa-solid fa-chevron-down down-vote';
   votesWrapper.append(upVote, votesNum, downVote);

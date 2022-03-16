@@ -344,7 +344,6 @@ describe('POST /post', () => {
           user_id: 1,
           title: 'Great Work',
           content: 'I love your website',
-          votes: 0,
         });
         return done(err);
       });
@@ -410,6 +409,23 @@ describe('POST /post', () => {
         expect(res.body.status).toBe(401);
         expect(res.body.message).toBe('Unauthorized');
         return done(err);
+      });
+  });
+});
+
+describe('GET /votes/:id', () => {
+  it('should return 200 OK and Content-Type /json/', (done) => {
+    expect.assertions(3);
+    request(app)
+      .get('/api/v1/votes/8')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.status).toBe(200);
+        expect(res.body.message).toBe('success');
+        expect(res.body.info.votes).toBe('-3');
+        return done();
       });
   });
 });
