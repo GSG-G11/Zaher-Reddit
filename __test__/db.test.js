@@ -11,6 +11,8 @@ const {
   getUserPosts,
   addPostQuery,
   getPostVotesQuery,
+  getPostCommentsQuery,
+  addCommentQuery,
 } = require('../server/database/queries');
 
 const { validPost } = require('../server/utils');
@@ -126,5 +128,27 @@ describe('Test suites for get post votes', () => {
     const postNumber = 8;
     const { rows } = await getPostVotesQuery(postNumber);
     expect(rows[0].votes).toBe('-3');
+  });
+});
+
+describe('Test suites for comments', () => {
+  it('should return all comments for a specific post', async () => {
+    const postNumber = 1;
+    const { rows } = await getPostCommentsQuery(postNumber);
+    expect(rows).toEqual([
+      {
+        id: 1,
+        user_id: 1,
+        post_id: 1,
+        content: 'This is the first comment',
+      },
+    ]);
+  });
+
+  it('should create a new comment', async () => {
+    const { rows } = await addCommentQuery({ content: 'Content Test', postId: 1 });
+    expect(rows[0]).toEqual({
+      id: 10, user_id: null, post_id: 1, content: 'Content Test',
+    });
   });
 });
