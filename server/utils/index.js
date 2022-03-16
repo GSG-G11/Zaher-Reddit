@@ -5,6 +5,7 @@ const {
   signupSchema,
   checkTaken,
   addPostSchema,
+  addCommentSchema,
 } = require('./validation');
 
 const {
@@ -30,6 +31,8 @@ module.exports = {
   checkTaken,
   signupSchema,
   loginSchema,
+  addPostSchema,
+  addCommentSchema,
   successSignup,
   invalidUsername,
   takenUsername,
@@ -41,7 +44,6 @@ module.exports = {
   unverifiedPassword,
   incorrectPassword,
   validPost,
-  addPostSchema,
   emptyTitle,
   tooShortTitle,
   tooLongContent,

@@ -13,6 +13,11 @@ const {
 } = require('./user');
 
 const {
+  getPostCommentsQuery,
+  addCommentQuery,
+} = require('./comments');
+
+const {
   getAllPostsQuery,
   getUserPosts,
   addPostQuery,
@@ -31,4 +36,6 @@ module.exports = {
   addPostQuery,
   getPostVotesQuery,
   voteQuery,
+  getPostCommentsQuery,
+  addCommentQuery,
 };
