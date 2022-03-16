@@ -34,6 +34,7 @@ const renderAuthenticatedUserPrivileges = (usernameLink, parent) => {
 };
 
 const renderPost = async (post, parent, userId, authenticated) => {
+  console.log(userId);
   // Post Card
   const postContainer = document.createElement('div');
   postContainer.className = 'post';
@@ -96,6 +97,7 @@ const renderPost = async (post, parent, userId, authenticated) => {
   commentsControllers.className = 'comments-controllers';
   const showComments = document.createElement('p');
   showComments.className = 'show-comments';
+  showComments.setAttribute('onclick', 'showComments(this)');
   showComments.textContent = 'Show Comments';
   const showCommentsIcon = document.createElement('i');
   showCommentsIcon.className = 'fa-solid fa-message';
@@ -112,7 +114,49 @@ const renderPost = async (post, parent, userId, authenticated) => {
 
   postBody.append(by, title, content, commentsControllers);
   postContainer.append(votes, postBody);
-  parent.prepend(postContainer);
+  const comments = document.createElement('div');
+  comments.className = 'comments';
+  try {
+    const commentsPayload = await axios.get(`/api/v1/comments/${post.id}`);
+    const postComments = commentsPayload.data.comments;
+    if (!postComments.length) {
+      const noComments = document.createElement('p');
+      noComments.className = 'no-comments';
+      noComments.textContent = 'No comments yet';
+      comments.append(noComments);
+    }
+    postComments.forEach(async (comment) => {
+      const commentBody = document.createElement('div');
+      commentBody.className = 'comment';
+      const commentBy = document.createElement('div');
+      commentBy.className = 'by';
+      const spanBy = document.createElement('span');
+      spanBy.textContent = 'By ';
+      const deleteBtnComment = document.createElement('span');
+      deleteBtnComment.id = 'delete';
+      deleteBtnComment.textContent = 'Delete';
+      const commentOwner = document.createElement('a');
+      const commentOwnerName = await axios.get(`/api/v1/user/${comment.user_id}`);
+      commentOwner.text = commentOwnerName.data.name;
+      commentOwner.href = `/users/${comment.user_id}`;
+      spanBy.append(commentOwner);
+      commentBy.append(spanBy);
+      if (authenticated) {
+        if (+userId === comment.user_id) {
+          commentOwner.text = 'You';
+          commentBy.textContent = '';
+          commentBy.append(spanBy, deleteBtnComment);
+        }
+      }
+      const commentContent = document.createElement('p');
+      commentContent.textContent = comment.content;
+      commentBody.append(commentBy, commentContent);
+      comments.append(commentBody);
+    });
+  } catch (err) {
+    console.log(err.response);
+  }
+  parent.prepend(postContainer, comments);
 };
 
 const authenticatedUserPage = async (
@@ -152,4 +196,10 @@ const logoutHandler = async () => {
   } catch (err) {
     handleErrPages(err.response.status);
   }
+};
+
+const showComments = (button) => {
+  const postId = button.parentElement.parentElement.parentElement.dataset.id;
+  const commentsSection = document.querySelector(`[data-id="${postId}"] + .comments`);
+  commentsSection.classList.toggle('show');
 };
