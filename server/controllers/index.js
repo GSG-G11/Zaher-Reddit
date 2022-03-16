@@ -9,6 +9,7 @@ const {
   getUserPosts,
   addPost,
   getPostVotes,
+  vote,
 } = require('./apis');
 
 module.exports = {
@@ -25,4 +26,5 @@ module.exports = {
   getUserPosts,
   addPost,
   getPostVotes,
+  vote,
 };

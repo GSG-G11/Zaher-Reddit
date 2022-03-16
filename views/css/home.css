@@ -53,3 +53,12 @@ main {
   display: block;
   margin-top: 50px;
 }
+
+.votes .up-vote.disable {
+  pointer-events: none;
+}
+
+.votes .down-vote.disable {
+  pointer-events: none;
+}
+

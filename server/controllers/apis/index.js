@@ -13,6 +13,7 @@ const {
   getUserPosts,
   addPost,
   getPostVotes,
+  vote,
 } = require('./posts');
 
 module.exports = {
@@ -24,4 +25,5 @@ module.exports = {
   getUserPosts,
   addPost,
   getPostVotes,
+  vote,
 };

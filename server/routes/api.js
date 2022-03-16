@@ -9,6 +9,7 @@ const {
   getUserPosts,
   addPost,
   getPostVotes,
+  vote,
 } = require('../controllers');
 
 const { checkLoggedIn } = require('../middleware');
@@ -22,6 +23,7 @@ apiRouter.get('/user-posts/:userId', getUserPosts);
 apiRouter.use(checkLoggedIn);
 apiRouter.get('/user', getUsername);
 apiRouter.post('/post', addPost);
+apiRouter.put('/vote', vote);
 apiRouter.delete('/logout', handleLogout);
 
 module.exports = apiRouter;
