@@ -10,6 +10,7 @@ const {
   getAllPostsQuery,
   getUserPosts,
   addPostQuery,
+  getPostVotesQuery,
 } = require('../server/database/queries');
 
 const { validPost } = require('../server/utils');
@@ -91,21 +92,18 @@ describe('Test suites for get user posts', () => {
         user_id: 1,
         title: 'Post 1',
         content: 'This is the first post',
-        votes: 0,
       },
       {
         id: 2,
         user_id: 1,
         title: 'Post 2',
         content: 'This is the second post',
-        votes: 0,
       },
       {
         id: 3,
         user_id: 1,
         title: 'Post 3',
         content: 'This is the third post',
-        votes: 0,
       },
     ]);
   });
@@ -113,13 +111,20 @@ describe('Test suites for get user posts', () => {
 
 describe('Test suites for add post', () => {
   it('should add a post to the database', async () => {
-    const { rows } = await addPostQuery({ ...validPost, id: 1, votes: 0 });
+    const { rows } = await addPostQuery({ ...validPost, id: 1 });
     expect(rows[0]).toEqual({
       id: 10,
       user_id: null,
       title: 'Great Work',
       content: 'I love your website',
-      votes: 0,
     });
+  });
+});
+
+describe('Test suites for get post votes', () => {
+  it('should return the votes number of a post', async () => {
+    const postNumber = 8;
+    const { rows } = await getPostVotesQuery(postNumber);
+    expect(rows[0].votes).toBe('-3');
   });
 });
