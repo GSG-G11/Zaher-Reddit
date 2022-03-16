@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS users, posts, comments CASCADE;
+DROP TABLE IF EXISTS users, posts, comments, votes CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -13,8 +13,7 @@ CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   title VARCHAR(250) NOT NULL,
-  content TEXT NOT NULL,
-  votes INTEGER NOT NULL
+  content TEXT NOT NULL
 );
 
 CREATE TABLE comments (
@@ -22,6 +21,13 @@ CREATE TABLE comments (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,
   content TEXT NOT NULL
+);
+
+CREATE TABLE votes (
+  post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  type VARCHAR(5) NOT NULL,
+  PRIMARY KEY (post_id, user_id) 
 );
 
 COMMIT;
