@@ -178,11 +178,15 @@ main .label {
   margin-bottom: 10px;
 }
 
+.posts-container {
+  margin-bottom: 20px;
+}
+
 .posts-container .post {
+  margin-top: 20px;
   background-color: white;
   border: 1px solid #ccc;
   display: flex;
-  margin-bottom: 20px;
 }
 
 .posts-container .post .votes {
@@ -265,4 +269,43 @@ main .label {
   border: 1px solid #e54d02;
   font-size: 0.9rem;
   cursor: pointer;
+}
+
+.comments {
+  background-color: white;
+  display: none;
+}
+
+.comments .no-comments {
+  padding: 20px;
+  text-align: center;
+}
+
+.post + .comments.show {
+  display: block;
+}
+
+.comments .comment {
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+}
+
+.comments .comment .by {
+  color: #7e7e7e;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comments .comment .by a {
+  color: #7e7e7e;
+  text-decoration: none;
+}
+
+.comments .comment .by #delete {
+  cursor: pointer;
+  user-select: none;
+  text-decoration: underline;
 }
