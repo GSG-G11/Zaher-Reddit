@@ -15,6 +15,7 @@ const {
 const {
   getPostCommentsQuery,
   addCommentQuery,
+  deleteCommentQuery,
 } = require('./comments');
 
 const {
@@ -40,4 +41,5 @@ module.exports = {
   getPostCommentsQuery,
   addCommentQuery,
   deletePostQuery,
+  deleteCommentQuery,
 };

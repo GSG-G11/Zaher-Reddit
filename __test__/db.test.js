@@ -14,6 +14,7 @@ const {
   getPostCommentsQuery,
   addCommentQuery,
   deletePostQuery,
+  deleteCommentQuery,
 } = require('../server/database/queries');
 
 const { validPost } = require('../server/utils');
@@ -163,6 +164,19 @@ describe('Test suites for delete post', () => {
       user_id: 1,
       title: 'Post 1',
       content: 'This is the first post',
+    });
+  });
+});
+
+describe('Test suites for delete comment', () => {
+  it('should delete a comment based on its id and user id', async () => {
+    const data = { commentId: 1, userId: 1 };
+    const { rows } = await deleteCommentQuery(data);
+    expect(rows[0]).toEqual({
+      id: 1,
+      user_id: 1,
+      post_id: 1,
+      content: 'This is the first comment',
     });
   });
 });

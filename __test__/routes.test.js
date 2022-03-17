@@ -509,13 +509,12 @@ describe('POST /comment', () => {
   });
 });
 
-describe('DELETE /post', () => {
+describe('DELETE /post/:postId', () => {
   it('should return 200 OK and Content-Type /json/', (done) => {
     expect.assertions(3);
     request(app)
-      .delete('/api/v1/post')
+      .delete('/api/v1/post/1')
       .set({ Cookie: 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
-      .send({ postId: 1 })
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
@@ -535,7 +534,7 @@ describe('DELETE /post', () => {
   it('should return 401 Unauthorized and Content-Type /json/', (done) => {
     expect.assertions(2);
     request(app)
-      .delete('/api/v1/post')
+      .delete('/api/v1/post/1')
       .send({ postId: 1 })
       .expect(401)
       .expect('Content-Type', /json/)
@@ -550,7 +549,61 @@ describe('DELETE /post', () => {
   it('should return 401 Unauthorized and Content-Type /json/', (done) => {
     expect.assertions(2);
     request(app)
-      .delete('/api/v1/post')
+      .delete('/api/v1/post/1')
+      .set({ Cookie: 'access_token=yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
+      .send({ postId: 1 })
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.status).toBe(401);
+        expect(res.body.message).toBe('invalid token');
+        return done();
+      });
+  });
+});
+
+describe('DELETE /comment/:commentId', () => {
+  it('should return 200 OK and Content-Type /json/', (done) => {
+    expect.assertions(3);
+    request(app)
+      .delete('/api/v1/comment/1')
+      .set({ Cookie: 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.status).toBe(200);
+        expect(res.body.message).toBe('Comment Successfully Deleted');
+        expect(res.body.comment).toEqual({
+          id: 1,
+          user_id: 1,
+          post_id: 1,
+          content: 'This is the first comment',
+        });
+        return done();
+      });
+  });
+
+  it('should return 401 Unauthorized and Content-Type /json/', (done) => {
+    expect.assertions(2);
+    request(app)
+      .delete('/api/v1/comment/1')
+      .send({ postId: 1 })
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.status).toBe(401);
+        expect(res.body.message).toBe('Unauthorized');
+        return done();
+      });
+  });
+
+  it('should return 401 Unauthorized and Content-Type /json/', (done) => {
+    expect.assertions(2);
+    request(app)
+      .delete('/api/v1/comment/1')
       .set({ Cookie: 'access_token=yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
       .send({ postId: 1 })
       .expect(401)

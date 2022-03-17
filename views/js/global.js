@@ -29,6 +29,7 @@ const handleAuthResponse = async (endpoint, data) => {
 const createCommentBody = async (comment, parent, userId, authenticated) => {
   const commentBody = document.createElement('div');
   commentBody.className = 'comment';
+  commentBody.setAttribute('data-comment', comment.id);
   const commentBy = document.createElement('div');
   commentBy.className = 'by';
   const spanBy = document.createElement('span');
@@ -46,6 +47,7 @@ const createCommentBody = async (comment, parent, userId, authenticated) => {
     if (+userId === comment.user_id) {
       commentOwner.textContent = 'You';
       commentBy.textContent = '';
+      deleteBtnComment.setAttribute('onclick', 'deleteComment(this)');
       commentBy.append(spanBy, deleteBtnComment);
     }
   }
@@ -255,10 +257,21 @@ const deletePost = async (deleteButton) => {
   const postId = deleteButton.parentElement.parentElement.parentElement.dataset.id;
 
   try {
-    const payload = await axios.delete('/api/v1/post', { data: { postId } });
+    const payload = await axios.delete(`/api/v1/post/${postId}`);
     if (payload.status === 200) {
       document.querySelector(`[data-id="${postId}"]`).remove();
     }
+  } catch (err) {
+    handleErrPages(err.response.status);
+  }
+};
+
+const deleteComment = async (deleteButton) => {
+  const commentId = deleteButton.parentElement.parentElement.dataset.comment;
+  const comment = document.querySelector(`[data-comment="${commentId}"]`);
+  try {
+    const payload = await axios.delete(`/api/v1/comment/${commentId}`);
+    comment.remove();
   } catch (err) {
     handleErrPages(err.response.status);
   }
