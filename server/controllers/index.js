@@ -14,6 +14,7 @@ const {
   addComment,
   deletePostHandler,
   deleteComment,
+  voteHandler,
 } = require('./apis');
 
 module.exports = {
@@ -35,4 +36,5 @@ module.exports = {
   addComment,
   deletePostHandler,
   deleteComment,
+  voteHandler,
 };

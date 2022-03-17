@@ -9,11 +9,11 @@ const {
   getUserPosts,
   addPost,
   getPostVotes,
-  vote,
   getPostComments,
   addComment,
   deletePostHandler,
   deleteComment,
+  voteHandler,
 } = require('../controllers');
 
 const { checkLoggedIn } = require('../middleware');
@@ -29,7 +29,7 @@ apiRouter.use(checkLoggedIn);
 apiRouter.get('/user', getUsername);
 apiRouter.post('/post', addPost);
 apiRouter.post('/comment', addComment);
-apiRouter.put('/vote', vote);
+apiRouter.post('/vote', voteHandler);
 apiRouter.delete('/logout', handleLogout);
 apiRouter.delete('/post/:postId', deletePostHandler);
 apiRouter.delete('/comment/:commentId', deleteComment);
