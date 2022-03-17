@@ -13,13 +13,19 @@ const getUserInfo = async () => {
       handleErrPages(e.response.status);
     }
     const userPostsPayload = await axios.get(`/api/v1/user-posts/${userId}`);
-    const userPosts = userPostsPayload.data.posts;
     const usernamePayload = await axios.get(`/api/v1/user/${userId}`);
     profileOwner.textContent = `${usernamePayload.data.name} Profile`;
-    if (userPosts.length) {
-      userPosts.forEach((post) => renderPost(post, postsContainer, loggedUserId, true));
+    if (userPostsPayload.data.message === 'No Posts') {
+      const noPosts = document.createElement('div');
+      noPosts.className = 'no-posts';
+      noPosts.textContent = 'No Posts Yet';
+      postsContainer.append(noPosts);
     } else {
-      postsContainer.textContent = 'No Posts Yet';
+      postsContainer.textContent = '';
+      const userPosts = userPostsPayload.data.posts;
+      if (userPosts.length) {
+        userPosts.forEach((post) => renderPost(post, postsContainer, loggedUserId, true));
+      }
     }
     const payload = await axios.get('/api/v1/user');
     const { name: username } = payload.data;
