@@ -11,6 +11,7 @@ const {
 const {
   getPostComments,
   addComment,
+  deleteComment,
 } = require('./comments');
 
 const {
@@ -35,4 +36,5 @@ module.exports = {
   getPostComments,
   addComment,
   deletePostHandler,
+  deleteComment,
 };

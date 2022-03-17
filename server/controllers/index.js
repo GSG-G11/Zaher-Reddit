@@ -13,6 +13,7 @@ const {
   getPostComments,
   addComment,
   deletePostHandler,
+  deleteComment,
 } = require('./apis');
 
 module.exports = {
@@ -33,4 +34,5 @@ module.exports = {
   getPostComments,
   addComment,
   deletePostHandler,
+  deleteComment,
 };
