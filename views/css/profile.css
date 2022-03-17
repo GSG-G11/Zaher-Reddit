@@ -24,3 +24,18 @@
 .user-info {
   width: 20%;
 }
+
+.comment-form {
+  padding: 20px;
+}
+
+.comment-form button {
+  padding: 10px 50px;
+  outline: none;
+  border-radius: 100vh;
+  background-color: #e54d02;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
