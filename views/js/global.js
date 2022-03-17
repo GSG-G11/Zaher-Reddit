@@ -242,6 +242,9 @@ document.addEventListener('click', async (e) => {
       const newComment = payload.data.comment;
       createCommentBody(newComment, commentsSection, curUserId, true);
     } catch (err) {
+      if (err.response.status === 401) {
+        window.location.href = '/login';
+      }
       handleErrPages(err.response.status);
     }
   }

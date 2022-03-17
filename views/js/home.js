@@ -50,8 +50,7 @@ const getAllPosts = async () => {
   try {
     const payload = await axios.get('/api/v1/posts');
     const { posts } = payload.data;
-    console.log(posts);
-    forEach((post) => renderPost(post, postsContainer));
+    posts.forEach((post) => renderPost(post, postsContainer));
   } catch (err) {
     handleErrPages(err.response.status);
   }
