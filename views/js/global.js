@@ -59,6 +59,7 @@ const renderAuthenticatedUserPrivileges = (usernameLink, parent) => {
   usernameLink.textContent = 'You';
   const deleteBtn = document.createElement('span');
   deleteBtn.id = 'delete';
+  deleteBtn.setAttribute('onclick', 'deletePost(this)');
   deleteBtn.textContent = 'Delete';
   parent.append(deleteBtn);
 };
@@ -249,3 +250,16 @@ document.addEventListener('click', async (e) => {
     }
   }
 });
+
+const deletePost = async (deleteButton) => {
+  const postId = deleteButton.parentElement.parentElement.parentElement.dataset.id;
+
+  try {
+    const payload = await axios.delete('/api/v1/post', { data: { postId } });
+    if (payload.status === 200) {
+      document.querySelector(`[data-id="${postId}"]`).remove();
+    }
+  } catch (err) {
+    handleErrPages(err.response.status);
+  }
+};
