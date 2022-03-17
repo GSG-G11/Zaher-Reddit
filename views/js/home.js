@@ -75,34 +75,6 @@ document.addEventListener('click', async (e) => {
   } else if (e.target.matches('.create-post-model')) {
     document.querySelector('.create-post-model').remove();
     body.classList.remove('model-appear');
-  } else if (e.target.matches('.up-vote')) {
-    const postId = e.target.parentElement.parentElement.parentElement.dataset.id;
-    const upVote = document.querySelector(`[data-id="${postId}"] .up-vote`);
-    const downVote = document.querySelector(`[data-id="${postId}"] .down-vote`);
-    const votesNum = document.querySelector(`[data-id="${postId}"] .votes-num`);
-    upVote.classList.add('disable');
-    downVote.classList.remove('disable');
-    const prevCount = Number(votesNum.textContent);
-    votesNum.textContent = prevCount + 1;
-    try {
-      await axios.put('/api/v1/vote', { postId: Number(postId), voteType: 'up' });
-    } catch (err) {
-      console.log(err.response);
-    }
-  } else if (e.target.matches('.down-vote')) {
-    const postId = e.target.parentElement.parentElement.parentElement.dataset.id;
-    const upVote = document.querySelector(`[data-id="${postId}"] .up-vote`);
-    const downVote = document.querySelector(`[data-id="${postId}"] .down-vote`);
-    const votesNum = document.querySelector(`[data-id="${postId}"] .votes-num`);
-    downVote.classList.add('disable');
-    upVote.classList.remove('disable');
-    const prevCount = Number(votesNum.textContent);
-    votesNum.textContent = prevCount - 1;
-    try {
-      await axios.put('/api/v1/vote', { postId: Number(postId), voteType: 'down' });
-    } catch (err) {
-      console.log(err.response);
-    }
   }
 });
 

@@ -57,6 +57,11 @@ const createCommentBody = async (comment, parent, userId, authenticated) => {
   parent.append(commentBody);
 };
 
+const getPostVotes = async (postId) => {
+  const payload = await axios.get(`/api/v1/votes/${postId}`);
+  return payload.data.info.votes;
+};
+
 const renderAuthenticatedUserPrivileges = (usernameLink, parent) => {
   usernameLink.textContent = 'You';
   const deleteBtn = document.createElement('span');
@@ -82,7 +87,7 @@ const renderPost = async (post, parent, userId, authenticated) => {
   const votesNum = document.createElement('div');
   votesNum.className = 'votes-num';
   try {
-    const postVotesPayload = await axios(`/api/v1/votes/${post.id}`);
+    const postVotesPayload = await axios.get(`/api/v1/votes/${post.id}`);
     const votesNumber = postVotesPayload.data.info.votes;
     votesNum.textContent = votesNumber;
   } catch (err) {
@@ -193,7 +198,11 @@ const authenticatedUserPage = async (
   const logout = document.createElement('button');
   logout.className = 'logout';
   logout.textContent = 'logout';
-  headerContainer.append(welcome, logout);
+  const profile = document.createElement('a');
+  profile.className = 'profile';
+  profile.textContent = 'Profile';
+  profile.href = `/users/${userId}`;
+  headerContainer.append(welcome, logout, profile);
 
   if (homepage) {
     try {
@@ -245,6 +254,44 @@ document.addEventListener('click', async (e) => {
       const newComment = payload.data.comment;
       createCommentBody(newComment, commentsSection, curUserId, true);
     } catch (err) {
+      if (err.response.status === 401) {
+        window.location.href = '/login';
+      }
+      handleErrPages(err.response.status);
+    }
+  } else if (e.target.matches('.up-vote')) {
+    const postId = e.target.parentElement.parentElement.parentElement.dataset.id;
+    const votesNum = e.target.nextSibling;
+    try {
+      const voteResponse = await axios.post('/api/v1/vote', { postId, voteType: 'up' });
+      if (voteResponse.data.message === 'Vote Added') {
+        votesNum.textContent = await getPostVotes(postId);
+      } else if (voteResponse.data.message === 'Vote Updated') {
+        const num = await getPostVotes(postId);
+        votesNum.textContent = num;
+      }
+      console.log(voteResponse);
+    } catch (err) {
+      console.log(err.response);
+      if (err.response.status === 401) {
+        window.location.href = '/login';
+      }
+      handleErrPages(err.response.status);
+    }
+  } else if (e.target.matches('.down-vote')) {
+    const postId = e.target.parentElement.parentElement.parentElement.dataset.id;
+    const votesNum = e.target.previousSibling;
+    try {
+      const voteResponse = await axios.post('/api/v1/vote', { postId, voteType: 'down' });
+      if (voteResponse.data.message === 'Vote Added') {
+        votesNum.textContent = await getPostVotes(postId);
+      } else if (voteResponse.data.message === 'Vote Updated') {
+        const num = await getPostVotes(postId);
+        votesNum.textContent = num;
+      }
+      console.log(voteResponse);
+    } catch (err) {
+      console.log(err.response);
       if (err.response.status === 401) {
         window.location.href = '/login';
       }

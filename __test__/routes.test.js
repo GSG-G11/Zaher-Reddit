@@ -628,3 +628,33 @@ describe('DELETE /comment/:commentId', () => {
       });
   });
 });
+
+describe('POST /vote', () => {
+  it('should return 200 OK and Content-Type /json/', (done) => {
+    request(app)
+      .post('/api/v1/vote')
+      .set({ Cookie: 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
+      .send({ postId: 1, voteType: 'up' })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('Already voted');
+        return done();
+      });
+  });
+
+  it('should return 200 OK and Content-Type /json/', (done) => {
+    request(app)
+      .post('/api/v1/vote')
+      .set({ Cookie: 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
+      .send({ postId: 1, voteType: 'down' })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('Vote Updated');
+        return done();
+      });
+  });
+});

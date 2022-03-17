@@ -15,11 +15,14 @@ const {
 } = require('./comments');
 
 const {
+  voteHandler,
+} = require('./votes');
+
+const {
   getAllPosts,
   getUserPosts,
   addPost,
   getPostVotes,
-  vote,
   deletePostHandler,
 } = require('./posts');
 
@@ -32,9 +35,9 @@ module.exports = {
   getUserPosts,
   addPost,
   getPostVotes,
-  vote,
   getPostComments,
   addComment,
   deletePostHandler,
   deleteComment,
+  voteHandler,
 };

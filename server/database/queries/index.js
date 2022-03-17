@@ -19,11 +19,17 @@ const {
 } = require('./comments');
 
 const {
+  insertUserVote,
+  checkUserDidVote,
+  checkUserDidVoteUpOrDown,
+  changeUserVoteType,
+} = require('./votes');
+
+const {
   getAllPostsQuery,
   getUserPosts,
   addPostQuery,
   getPostVotesQuery,
-  voteQuery,
   deletePostQuery,
 } = require('./posts');
 
@@ -37,9 +43,12 @@ module.exports = {
   getUserPosts,
   addPostQuery,
   getPostVotesQuery,
-  voteQuery,
   getPostCommentsQuery,
   addCommentQuery,
   deletePostQuery,
   deleteCommentQuery,
+  insertUserVote,
+  checkUserDidVote,
+  checkUserDidVoteUpOrDown,
+  changeUserVoteType,
 };

@@ -260,7 +260,7 @@ main .label {
 }
 
 .logout {
-  padding: 7px 50px;
+  padding: 7px 40px;
   font-weight: bold;
   background: white;
   color: #e54d02;
@@ -269,6 +269,7 @@ main .label {
   border: 1px solid #e54d02;
   font-size: 0.9rem;
   cursor: pointer;
+  margin-left: 5px;
 }
 
 .comments {
@@ -326,4 +327,18 @@ main .label {
 
 .comment-form::after, .comment-form::before {
   display: none;
+}
+
+.profile {
+  padding: 7px 40px;
+  font-weight: bold;
+  background: white;
+  color: white;
+  text-decoration: none;
+  border-radius: 100vh;
+  background-color: #1979d3;
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-left: 10px;
 }
