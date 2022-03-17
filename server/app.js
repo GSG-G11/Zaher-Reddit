@@ -7,7 +7,6 @@ const router = require('./routes');
 
 const app = express();
 
-app.disable('etag');
 app.disable('x-powered-by');
 app.set('port', process.env.PORT || 3000);
 
