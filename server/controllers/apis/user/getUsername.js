@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
   try {
     const { rows } = await getUsernameQuery(userId);
     const userExists = rows.length;
-    if (!userExists) throw CustomErr('No Such User', 400);
+    if (!userExists) throw CustomErr('Page Not Found', 404);
     const username = rows[0].name;
     res.json({
       message: 'User found', status: 200, name: username, id: userId,
