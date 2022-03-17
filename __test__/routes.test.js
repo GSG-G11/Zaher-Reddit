@@ -513,9 +513,8 @@ describe('DELETE /post', () => {
   it('should return 200 OK and Content-Type /json/', (done) => {
     expect.assertions(3);
     request(app)
-      .delete('/api/v1/post')
+      .delete('/api/v1/post/1')
       .set({ Cookie: 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ3MjU0Mzc2fQ.RGoRKpo82KCtuKjSBUAR8pP-G0x04ymrd2bl7S29h8s' })
-      .send({ postId: 1 })
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
