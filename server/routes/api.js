@@ -12,6 +12,7 @@ const {
   vote,
   getPostComments,
   addComment,
+  deletePostHandler,
 } = require('../controllers');
 
 const { checkLoggedIn } = require('../middleware');
@@ -29,5 +30,6 @@ apiRouter.post('/post', addPost);
 apiRouter.post('/comment', addComment);
 apiRouter.put('/vote', vote);
 apiRouter.delete('/logout', handleLogout);
+apiRouter.delete('/post', deletePostHandler);
 
 module.exports = apiRouter;

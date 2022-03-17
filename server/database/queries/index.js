@@ -23,6 +23,7 @@ const {
   addPostQuery,
   getPostVotesQuery,
   voteQuery,
+  deletePostQuery,
 } = require('./posts');
 
 module.exports = {
@@ -38,4 +39,5 @@ module.exports = {
   voteQuery,
   getPostCommentsQuery,
   addCommentQuery,
+  deletePostQuery,
 };
