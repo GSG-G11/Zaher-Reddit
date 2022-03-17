@@ -17,7 +17,8 @@ module.exports = async (req, res, next) => {
       const { rows } = await checkUserDidVoteUpOrDown({ userId, postId });
       const votedType = rows[0].type;
       if (votedType === voteType) {
-        res.json({ message: 'Already voted' });
+        await changeUserVoteType({ userId, postId, voteType: 'none' });
+        res.json({ message: 'Vote Removed' });
       } else {
         await changeUserVoteType({ userId, postId, voteType });
         res.json({ message: 'Vote Updated' });
