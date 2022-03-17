@@ -309,3 +309,21 @@ main .label {
   user-select: none;
   text-decoration: underline;
 }
+
+.comment-form {
+  position: static;
+  border-radius: 0;
+  display: flex;
+}
+
+.comment-form input {
+  padding: 7px;
+  outline: none;
+  border: 1px solid #ccc;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.comment-form::after, .comment-form::before {
+  display: none;
+}
