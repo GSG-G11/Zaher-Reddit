@@ -324,6 +324,18 @@ describe('GET /user/:id', () => {
         return done();
       });
   });
+
+  it('should return 404 Page Not Found and Content-Type /json/', (done) => {
+    request(app)
+      .get('/api/v1/user/100')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('Page Not Found');
+        return done();
+      });
+  });
 });
 
 describe('POST /post', () => {
