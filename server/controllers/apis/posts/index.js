@@ -3,6 +3,7 @@ const getUserPosts = require('./getUserPosts');
 const addPost = require('./addPost');
 const getPostVotes = require('./getPostVotes');
 const vote = require('./vote');
+const deletePostHandler = require('./deletePostHandler');
 
 module.exports = {
   getAllPosts,
@@ -10,4 +11,5 @@ module.exports = {
   addPost,
   getPostVotes,
   vote,
+  deletePostHandler,
 };

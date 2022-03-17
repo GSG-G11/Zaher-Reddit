@@ -19,6 +19,7 @@ const {
   addPost,
   getPostVotes,
   vote,
+  deletePostHandler,
 } = require('./posts');
 
 module.exports = {
@@ -33,4 +34,5 @@ module.exports = {
   vote,
   getPostComments,
   addComment,
+  deletePostHandler,
 };
