@@ -13,6 +13,7 @@ const {
   getPostVotesQuery,
   getPostCommentsQuery,
   addCommentQuery,
+  deletePostQuery,
 } = require('../server/database/queries');
 
 const { validPost } = require('../server/utils');
@@ -149,6 +150,19 @@ describe('Test suites for comments', () => {
     const { rows } = await addCommentQuery({ content: 'Content Test', postId: 1 });
     expect(rows[0]).toEqual({
       id: 10, user_id: null, post_id: 1, content: 'Content Test',
+    });
+  });
+});
+
+describe('Test suites for delete post', () => {
+  it('should delete a post based on its id and user id', async () => {
+    const data = { postId: 1, userId: 1 };
+    const { rows } = await deletePostQuery(data);
+    expect(rows[0]).toEqual({
+      id: 1,
+      user_id: 1,
+      title: 'Post 1',
+      content: 'This is the first post',
     });
   });
 });
